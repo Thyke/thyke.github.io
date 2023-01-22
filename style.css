@@ -1,0 +1,144 @@
+/** Basic colors and fonts */
+body {
+  font-family: 'Open Sans', sans-serif;
+  background-color: #181818;
+  color: #e9e9e9;
+}
+pre, code {
+  font-family: Consolas, Monaco, monospace;
+  font-size: 11pt;
+}
+code {
+  color: #c0c0c0;
+}
+
+/** No blue/purple links; underline on hover only */
+a {
+  color: #c0c0dd;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+/** Increase list item spacing, use alternate "compact" class for short lists */
+ul>ul, li:not(:last-child) {
+  margin-bottom: 1em;
+}
+ul.compact li, ul.compact ul {
+  margin-bottom: 0.2em;
+}
+
+/** Main div: pad out bottom except for print;
+    limit width and indent top-level paragraphs on wider screens;
+    adjust title/subtitle spacing and add space above section heading
+*/
+#main {
+  padding-bottom: 3em;
+}
+header h1 {
+  margin-bottom: 0;
+}
+header p {
+  margin-top: 0;
+  padding-left: 1em;
+}
+header p:not(:last-child) {
+  margin-bottom: 0;
+}
+@media only screen and (min-width: 600px) {
+  #main {
+    width: 90%;
+    margin: 0 auto;
+  }
+  #main > p {
+    padding-left: 0.5em;
+  }
+}
+@media only screen and (min-width: 1200px) {
+  #main {
+    width: 1000px;
+    margin: 0 auto;
+  }
+  #main > p {
+    padding-left: 0.5em;
+  }
+}
+@media print {
+  h1 {
+    margin-top: 0;
+  }
+  #main {
+    padding-bottom: 0;
+  }
+  .nav {
+    visibility: hidden;
+  }
+}
+
+/** Code snippets colorized via pygmentize */
+.highlight {
+  padding: 1em;
+}
+.highlight pre {
+  margin: 0;
+  color: hsl(0, 0%, 90%);
+}
+@media only screen and (max-width: 600px) {
+  .highlight pre {
+    font-size: 10pt;
+    white-space: pre-wrap;
+  }
+}
+@media print {
+  .highlight pre {
+    white-space: pre-wrap;
+  }
+}
+.c1, .cm { color: hsl(40, 13%, 50%); }
+.cpf, .sc, .s { color: hsl(40, 30%, 70%); }
+.cp { color: hsl(170, 50%, 68%); }
+.k, .kt, .nb { color: hsl(200, 80%, 72%); }
+.o { color: hsl(170, 50%, 68%); }
+.mi, .mo, .mh, .mf { color: hsl(0, 50%, 68%); }
+.fi, .nf { color: hsl(20, 65%, 80%); }
+.fd { color: hsl(123, 100%, 77%); }
+.fp, .ev { color: hsl(251, 62%, 81%); }
+.tc { color: #8ef8d6;  }
+.bt { color: #96ea9a; }
+.bts, .bvs { color: #8fb4ff; font-weight: bold; }
+.btn { color: #4e7854; }
+.bte, .bve { color: #7a97d3; }
+.bv { color: #acaaff; }
+.bvn { color: #7876c6; }
+
+pre.centered {
+  width: max-content;
+  margin: 0 auto;
+}
+
+/** Li'l inset box for sidenotes and whatnot */
+.blurb {
+  border-top: 1px solid #9f9f9f;
+  border-right: 1px solid #666666;
+  border-bottom: 1px solid #666666;
+  border-left: 8px solid #9f9f9f;
+  background-color: #202020;
+  padding: 0 1em;
+}
+
+/** Images displayed inline as part of the page content */
+.image {
+  width: 100%;
+  text-align: center;
+  margin: 0 auto;
+}
+.image img {
+  max-width: 100%;
+  object-fit: scale-down;
+}
+.image p {
+  margin-top: 0;
+  font-style: italic;
+}
+1
