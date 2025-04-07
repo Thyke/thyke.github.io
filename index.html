@@ -1,132 +1,1008 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>Faruk Yıldırım</title>
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
-    <div id="main">
-      <header>
-        <h1>Faruk Yıldırım</h1>
-      </header>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Faruk Yıldırım - Game Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #2c3e50;
+      --secondary-color: #3498db;
+      --accent-color: #e74c3c;
+      --background-color: #f8f9fa;
+      --text-color: #333;
+      --text-light: #6c757d;
+      --card-bg: #fff;
+      --border-radius: 8px;
+      --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      --transition: all 0.3s ease;
+    }
 
-      <p>My programming journey began with game hacking, but I quickly decided to channel my passion into game development instead. Currently, I'm deeply engaged in studying the Unreal Engine source code to understand its core mechanics and working extensively with the Gameplay Ability System. I possess comprehensive knowledge in animation programming, shaders, and various aspects of Unreal Engine. I develop high-level game mechanics and systems using both C++ and Blueprint in Unreal Engine. My goal is to continuously apply my expanding knowledge to create high-quality and innovative games. With extensive experience in both low-level and high-level programming, I bring a unique perspective to game development challenges.</p>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-      <h2>Professional Experience</h2>
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: var(--background-color);
+      color: var(--text-color);
+      line-height: 1.6;
+      padding: 0;
+      margin: 0;
+    }
+
+    /* Dark Mode Toggle */
+    .dark-mode {
+      --primary-color: #375a7f;
+      --secondary-color: #3498db;
+      --accent-color: #e74c3c;
+      --background-color: #222;
+      --text-color: #f8f9fa;
+      --text-light: #adb5bd;
+      --card-bg: #2c3e50;
+    }
+
+    .toggle-container {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1000;
+    }
+
+    .toggle-switch {
+      position: relative;
+      display: inline-block;
+      width: 60px;
+      height: 30px;
+    }
+
+    .toggle-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .toggle-slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: var(--transition);
+      border-radius: 30px;
+    }
+
+    .toggle-slider:before {
+      position: absolute;
+      content: "";
+      height: 22px;
+      width: 22px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      transition: var(--transition);
+      border-radius: 50%;
+    }
+
+    input:checked + .toggle-slider {
+      background-color: var(--secondary-color);
+    }
+
+    input:checked + .toggle-slider:before {
+      transform: translateX(30px);
+    }
+
+    /* Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    /* Header */
+    .header {
+      background-color: var(--primary-color);
+      color: white;
+      padding: 2.5rem 0;
+      text-align: center;
+      margin-bottom: 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(52, 152, 219, 0.4) 0%, rgba(231, 76, 60, 0.4) 100%);
+      z-index: 1;
+    }
+
+    .header-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .header h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+
+    .header p {
+      font-size: 1.1rem;
+      max-width: 800px;
+      margin: 0 auto;
+      font-weight: 300;
+    }
+
+    /* Tabs */
+    .tabs {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .tab-btn {
+      background: none;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      cursor: pointer;
+      font-weight: 500;
+      color: var(--text-light);
+      border-bottom: 3px solid transparent;
+      transition: var(--transition);
+      margin: 0 0.5rem;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .tab-btn:hover {
+      color: var(--secondary-color);
+    }
+
+    .tab-btn.active {
+      color: var(--secondary-color);
+      border-bottom: 3px solid var(--secondary-color);
+    }
+
+    /* Tab Content */
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+      animation: fadeIn 0.5s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Cards */
+    .card {
+      background-color: var(--card-bg);
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      padding: 2rem;
+      margin-bottom: 2rem;
+      transition: var(--transition);
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      cursor: pointer;
+    }
+
+    .card-header h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      color: var(--primary-color);
+    }
+
+    .card-header .toggle-icon {
+      width: 20px;
+      height: 20px;
+      position: relative;
+      transition: var(--transition);
+    }
+
+    .card-header .toggle-icon::before,
+    .card-header .toggle-icon::after {
+      content: '';
+      position: absolute;
+      background-color: var(--secondary-color);
+      transition: var(--transition);
+    }
+
+    .card-header .toggle-icon::before {
+      width: 20px;
+      height: 2px;
+      top: 9px;
+      left: 0;
+    }
+
+    .card-header .toggle-icon::after {
+      width: 2px;
+      height: 20px;
+      top: 0;
+      left: 9px;
+    }
+
+    .card.expanded .toggle-icon::after {
+      transform: rotate(90deg);
+      opacity: 0;
+    }
+
+    .card-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+
+    .card.expanded .card-content {
+      max-height: 2000px;
+    }
+
+    .card-subtitle {
+      font-weight: 500;
+      color: var(--text-light);
+      margin-bottom: 1rem;
+    }
+
+    .card-item {
+      margin-bottom: 1.5rem;
+    }
+
+    .card-item h4 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--secondary-color);
+    }
+
+    .card-item p {
+      margin-bottom: 0.5rem;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+
+    .tag {
+      background-color: rgba(52, 152, 219, 0.1);
+      color: var(--secondary-color);
+      padding: 0.25rem 0.75rem;
+      border-radius: 30px;
+      font-size: 0.85rem;
+      margin-right: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    /* Skills */
+    .skills-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .skill-category {
+      margin-bottom: 2rem;
+    }
+
+    .skill-category h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--primary-color);
+    }
+
+    .skill-item {
+      margin-bottom: 1rem;
+    }
+
+    .skill-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
+    }
+
+    .skill-bar {
+      height: 8px;
+      background-color: #e9ecef;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .skill-progress {
+      height: 100%;
+      background-color: var(--secondary-color);
+      border-radius: 4px;
+      transition: width 1s ease;
+    }
+
+    /* Projects */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .project-card {
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      background-color: var(--card-bg);
+      box-shadow: var(--box-shadow);
+      transition: var(--transition);
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .project-img {
+      height: 180px;
+      background-color: var(--secondary-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+
+    .project-content {
+      padding: 1.5rem;
+    }
+
+    .project-title {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--primary-color);
+    }
+
+    .project-desc {
+      margin-bottom: 1rem;
+      color: var(--text-light);
+    }
+
+    .project-links {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .project-link {
+      text-decoration: none;
+      color: var(--secondary-color);
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    .project-link:hover {
+      text-decoration: underline;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 2rem 0;
+      background-color: var(--primary-color);
+      color: white;
+      margin-top: 3rem;
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+      .container {
+        padding: 1rem;
+      }
       
-      <h3>Vasanta</h3>
-      <p><strong>Job Title:</strong> Lead Programmer</p>
-      <p><strong>Responsibilities:</strong></p>
-      <ul>
-        <li>Leading development of an ARPG project as a generalist programmer</li>
-        <li>Project coordination and technical architecture design</li>
-        <li>System optimization and implementation</li>
-      </ul>
+      .header h1 {
+        font-size: 2rem;
+      }
+      
+      .tabs {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .tab-btn {
+        margin-bottom: 0.5rem;
+      }
+      
+      .skills-container, .projects-grid {
+        grid-template-columns: 1fr;
+      }
+    }
 
-      <h3>Marketplace Development</h3>
-      <p><strong>Unreal Engine Marketplace Developer</strong></p>
-      <ul>
-        <li><b>Actor Register System</b> - Code plugin for efficient actor management</li>
-        <li><b>AttributeSystem</b> - Comprehensive Blueprint pack for character attributes</li>
-        <li><b>Character LOD Manager</b> - Code plugin for distance-based LOD optimization</li>
-        <li><b>Tick Batching (Aggregator)</b> - Performance optimization system</li>
-      </ul>
+    ul {
+      list-style-position: inside;
+      padding-left: 1rem;
+    }
 
-      <h3>Gamegine Games</h3>
-      <p><strong>Job Title:</strong> Lead Programmer (Good Kill! Project)</p>
-      <p><strong>Responsibilities:</strong></p>
-      <ul>
-        <li>Designed and implemented software architecture for the project</li>
-        <li>Developed high-performance AI systems with optimized CPU usage</li>
-        <li>Programmed AI character animations and behavior systems</li>
-        <li>Led and managed junior and mid-level developers</li>
-        <li>Conducted optimization and performance improvements</li>
-        <li>Handled bug fixes and quality assurance</li>
-      </ul>
+    ul li {
+      margin-bottom: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="toggle-container">
+    <label class="toggle-switch">
+      <input type="checkbox" id="dark-mode-toggle">
+      <span class="toggle-slider"></span>
+    </label>
+  </div>
 
-      <p><strong>Job Title:</strong> Senior Programmer</p>
-      <p><strong>Projects:</strong></p>
-      <ul>
-        <li>Developed ARPG demo featuring advanced combat mechanics and Gameplay Ability System</li>
-        <li>Created "Tears of Steel" demo (unreleased) with innovative gameplay mechanics</li>
-        <li>Implemented comprehensive Chaos Destruction system</li>
-        <li>Developed Action-Adventure demo based on Tarkan comic series, featuring dynamic combat and storytelling elements</li>
-        <li>Led R&D project "World Generator":
-          <ul>
-            <li>Developed rapid world generation system using LandscapePatch for terrain creation</li>
-            <li>Implemented PCG (Procedural Content Generation) for dynamic vegetation distribution</li>
-            <li>Created parametric control systems for landscape and environmental features</li>
-            <li>Designed and implemented dynamic weather system with customizable parameters</li>
-          </ul>
-        </li>
-      </ul>
-      <p><strong>Technologies Used:</strong> Unreal Engine, C++, Perforce, PCG</p>
-
-      <h3>Navras Academy</h3>
-      <p><strong>Job Title:</strong> Educator</p>
-      <p><strong>Responsibilities:</strong></p>
-      <ul>
-        <li>Conducted Blueprint coding and fundamental programming lessons using Unreal Engine</li>
-        <li>Taught programming to individuals with no prior experience</li>
-        <li>Explained and demonstrated how to write game mechanics and other essential gameplay features</li>
-      </ul>
-
-      <h2>Personal Projects</h2>
-      <ul class="compact">
-        <li><b>Zygora Survival Protocol</b> - A survival game featuring unique mutation mechanics where infected humans exhibit different levels of intelligence and abilities. From basic zombie-like creatures to highly intelligent mutated beings, each type presents unique challenges and gameplay opportunities.</li>
-        <li><b>Alex Awakening</b> - An AA-level action-adventure game with advanced gameplay mechanics and immersive storytelling.</li>
-        <li><a href="https://github.com/Thyke/RuinsOfEternity"><b>Ruins of Eternity</b></a> - An Open Source action-adventure game (hobby project).</li>
-      </ul>
-
-      <h2>Unreleased Projects & Systems</h2>
-      <ul class="compact">
-        <li><b>Yedikule Zindanları</b> - A horror game based in the historical Seven Tower Dungeons, featuring paranormal elements and Turkish historical context.</li>
-        <li><b>NPC Memory System</b> - Advanced AI system featuring emotional bonding mechanics, allowing NPCs to form memories, develop emotional responses, and maintain persistent relationships with players. Includes anger, affection, and various emotional states that influence NPC behavior.</li>
-        <li><b>Utility AI System</b> - Sophisticated decision-making system for NPCs using utility theory, enabling dynamic behavior selection based on multiple weighted factors and environmental conditions. The system allows for complex decision trees and adaptive AI responses.</li>
-        <li><b>Enhanced AIPerception System</b> - Extended Unreal Engine's AIPerception system with a new Smell Sense capability. Implementation includes scent trails, dissipation mechanics, and environmental factors affecting scent propagation, allowing AI to track and respond to olfactory stimuli.</li>
-      </ul>
-
-      <h2>Commercial Projects</h2>
-      <ul class="compact">
-        <li><a href="https://store.steampowered.com/app/2705210/Good_Kill/"><b>Good Kill!</b></a> - Gameplay programming, profiling and optimization, animation programming, AI systems</li>
-      </ul>
-
-      <h2>Skills</h2>
-      <h3>Technical Skills</h3>
-      <ul class="compact">
-        <li>C++</li>
-        <li>Unreal Engine</li>
-        <li>Gameplay Ability System</li>
-        <li>Performance Optimization</li>
-        <li>Animation Programming</li>
-        <li>AI Programming</li>
-        <li>Gameplay Systems Design</li>
-        <li>Shader Programming</li>
-      </ul>
-
-      <h3>Art & Design Skills</h3>
-      <ul class="compact">
-        <li>Blender (Basic)</li>
-        <li>Cascadeur (Basic)</li>
-        <li>Environment Art & Level Design</li>
-      </ul>
-
-      <h3>Tools & Software</h3>
-      <ul class="compact">
-        <li>Visual Studio</li>
-        <li>Perforce</li>
-        <li>Unreal Engine Marketplace Development</li>
-      </ul>
-
-      <h2>Hobbies</h2>
-      <ul class="compact">
-        <li>Playing video games</li>
-        <li>Travelling</li>
-        <li>Favorite Games: World of Warcraft, The Last of Us series, Tomb Raider series, Red Dead Redemption 2, Ori and the Will of the Wisps</li>
-      </ul>
+  <header class="header">
+    <div class="header-content">
+      <h1>Faruk Yıldırım</h1>
+      <p>Senior C++ / Unreal Engine Developer</p>
     </div>
-  </body>
+  </header>
+
+  <div class="container">
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="about">About Me</button>
+      <button class="tab-btn" data-tab="experience">Experience</button>
+      <button class="tab-btn" data-tab="projects">Projects</button>
+      <button class="tab-btn" data-tab="skills">Skills</button>
+      <button class="tab-btn" data-tab="opensource">Open-Source</button>
+    </div>
+
+    <div id="about" class="tab-content active">
+      <div class="card">
+        <div class="card-header">
+          <h3>Pro Profile</h3>
+        </div>
+        <div class="card-content" style="max-height: 2000px;">
+          <p>My programming journey began with game hacking, but I quickly decided to channel my passion into game development instead. Currently, I'm deeply engaged in studying the Unreal Engine source code to understand its core mechanics and working extensively with the Gameplay Ability System. I possess comprehensive knowledge in animation programming, shaders, and various aspects of Unreal Engine. I develop high-level game mechanics and systems using both C++ and Blueprint in Unreal Engine. My goal is to continuously apply my expanding knowledge to create high-quality and innovative games. With extensive experience in both low-level and high-level programming, I bring a unique perspective to game development challenges.</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="experience" class="tab-content">
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this.parentElement)">
+          <h3>Vasanta Global</h3>
+          <div class="toggle-icon"></div>
+        </div>
+        <div class="card-content">
+          <p class="card-subtitle">Lead Programmer</p>
+          <ul>
+            <li>Leading development of an ARPG project as a generalist programmer</li>
+            <li>Project coordination and technical architecture design</li>
+            <li>System optimization and implementation</li>
+            <li>Large-scale map optimization (16km²)</li>
+            <li>Foliage and Nanite optimization</li>
+            <li>GameplayAbilitySystem integration and implementation</li>
+            <li>Quest system development</li>
+            <li>Inventory system implementation</li>
+            <li>Horse riding mechanics programming</li>
+            <li>Boss battle systems and mechanics</li>
+          </ul>
+          <div class="tags">
+            <span class="tag">Unreal Engine</span>
+            <span class="tag">C++</span>
+            <span class="tag">GAS</span>
+            <span class="tag">Optimization</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this.parentElement)">
+          <h3>Marketplace Development</h3>
+          <div class="toggle-icon"></div>
+        </div>
+        <div class="card-content">
+          <p class="card-subtitle">Unreal Engine Marketplace Developer</p>
+          <div class="card-item">
+            <h4>Actor Register System</h4>
+            <p>Code plugin for efficient actor management</p>
+          </div>
+          <div class="card-item">
+            <h4>AttributeSystem</h4>
+            <p>Comprehensive Blueprint pack for character attributes</p>
+          </div>
+          <div class="tags">
+            <span class="tag">Unreal Engine</span>
+            <span class="tag">C++</span>
+            <span class="tag">Blueprint</span>
+            <span class="tag">Marketplace</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this.parentElement)">
+          <h3>Gamegine Games</h3>
+          <div class="toggle-icon"></div>
+        </div>
+        <div class="card-content">
+          <div class="card-item">
+            <h4>Lead Programmer (Good Kill! Project)</h4>
+            <ul>
+              <li>Designed and implemented software architecture for the project</li>
+              <li>Developed high-performance AI systems with optimized CPU usage</li>
+              <li>Programmed AI character animations and behavior systems</li>
+              <li>Led and managed junior and mid-level developers</li>
+              <li>Conducted optimization and performance improvements</li>
+              <li>Handled bug fixes and quality assurance</li>
+              <li>Assigned and managed tasks across development team</li>
+              <li>Mentored junior developers on technical implementation</li>
+              <li>Resolved complex technical challenges and bottlenecks</li>
+            </ul>
+          </div>
+          <div class="card-item">
+            <h4>Senior Programmer</h4>
+            <ul>
+              <li>Developed "NOMAD" ARPG demo featuring advanced combat mechanics and Gameplay Ability System</li>
+              <li>Created robot-themed game demo (unreleased) with innovative gameplay mechanics</li>
+              <li>Developed Action-Adventure demo based on Turkish comic series, featuring dynamic combat and storytelling elements</li>
+              <li>Implemented advanced animation programming techniques and Gameplay Ability System across all projects</li>
+              <li>Led R&D project "World Generator":
+                <ul>
+                  <li>Developed rapid world generation system using LandscapePatch for terrain creation</li>
+                  <li>Implemented PCG (Procedural Content Generation) for dynamic vegetation distribution</li>
+                  <li>Created parametric control systems for landscape and environmental features</li>
+                  <li>Designed and implemented dynamic weather system with customizable parameters</li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <div class="tags">
+            <span class="tag">Unreal Engine</span>
+            <span class="tag">C++</span>
+            <span class="tag">PCG</span>
+            <span class="tag">AI</span>
+            <span class="tag">Animation</span>
+            <span class="tag">GAS</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this.parentElement)">
+          <h3>Navras Academy</h3>
+          <div class="toggle-icon"></div>
+        </div>
+        <div class="card-content">
+          <p class="card-subtitle">Educator</p>
+          <ul>
+            <li>Conducted Blueprint coding and fundamental programming lessons using Unreal Engine</li>
+            <li>Taught programming to individuals with no prior experience</li>
+            <li>Explained and demonstrated how to write game mechanics and other essential gameplay features</li>
+            <li>Provided mentorship to students for 1.5 years</li>
+          </ul>
+          <div class="tags">
+            <span class="tag">Unreal Engine</span>
+            <span class="tag">Blueprint</span>
+            <span class="tag">Education</span>
+            <span class="tag">Mentoring</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="projects" class="tab-content">
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-img">Bellringer Project</div>
+          <div class="project-content">
+            <h3 class="project-title">Bellringer Project</h3>
+            <p class="project-desc">Singleplayer horror game based on an AudioObservation system. Players must navigate through the game without making sound, with a story-driven experience.</p>
+            <div class="tags">
+              <span class="tag">Horror</span>
+              <span class="tag">AudioObservation</span>
+              <span class="tag">In Development</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="project-card">
+          <div class="project-img">Zygora Survival Protocol</div>
+          <div class="project-content">
+            <h3 class="project-title">Zygora Survival Protocol</h3>
+            <p class="project-desc">A survival game featuring unique mutation mechanics where infected humans exhibit different levels of intelligence and abilities, from basic zombie-like creatures to highly intelligent mutated beings.</p>
+            <div class="tags">
+              <span class="tag">Survival</span>
+              <span class="tag">Mutation</span>
+              <span class="tag">Design Phase</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="project-card">
+          <div class="project-img">Alex Awakening</div>
+          <div class="project-content">
+            <h3 class="project-title">Alex Awakening</h3>
+            <p class="project-desc">An AA-level action-adventure game with advanced gameplay mechanics and immersive storytelling. Infrastructure has been established, but development is currently on hold.</p>
+            <div class="tags">
+              <span class="tag">Action-Adventure</span>
+              <span class="tag">AA-level</span>
+              <span class="tag">On Hold</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="project-card">
+          <div class="project-img">Good Kill!</div>
+          <div class="project-content">
+            <h3 class="project-title">Good Kill!</h3>
+            <p class="project-desc">Commercial project featuring gameplay programming, profiling and optimization, animation programming, and AI systems.</p>
+            <div class="tags">
+              <span class="tag">Commercial</span>
+              <span class="tag">Released</span>
+            </div>
+            <div class="project-links">
+              <a href="https://store.steampowered.com/app/2705210/Good_Kill/" class="project-link" target="_blank">Steam →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="card">
+        <div class="card-header" onclick="toggleCard(this.parentElement)">
+          <h3>Unreleased Systems</h3>
+          <div class="toggle-icon"></div>
+        </div>
+        <div class="card-content">
+          <div class="card-item">
+            <h4>NPC Memory System</h4>
+            <p>Advanced AI system featuring emotional bonding mechanics, allowing NPCs to form memories, develop emotional responses, and maintain persistent relationships with players. Includes anger, affection, and various emotional states that influence NPC behavior.</p>
+          </div>
+          <div class="card-item">
+            <h4>Utility AI System</h4>
+            <p>Sophisticated decision-making system for NPCs using utility theory, enabling dynamic behavior selection based on multiple weighted factors and environmental conditions. The system allows for complex decision trees and adaptive AI responses.</p>
+          </div>
+          <div class="card-item">
+            <h4>Enhanced AIPerception System</h4>
+            <p>Extended Unreal Engine's AIPerception system with a new Smell Sense capability. Implementation includes scent trails, dissipation mechanics, and environmental factors affecting scent propagation, allowing AI to track and respond to olfactory stimuli.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="skills" class="tab-content">
+      <div class="skills-container">
+        <div class="card">
+          <div class="card-header">
+            <h3>Technical Skills</h3>
+          </div>
+          <div class="card-content" style="max-height: 2000px;">
+            <div class="skill-category">
+              <div class="skill-item">
+                <div class="skill-header">
+                  <span>C++</span>
+                  <span>95%</span>
+                </div>
+                <div class="skill-bar">
+                  <div class="skill-progress" style="width: 95%;"></div>
+                </div>
+              </div>
+              <div class="skill-item">
+                <div class="skill-header">
+                  <span>Unreal Engine</span>
+                  <span>90%</span>
+                </div>
+                <div class="skill-bar">
+                  <div class="skill-progress" style="width: 90%;"></div>
+                </div>
+              </div>
+              <div class="skill-item">
+                <div class="skill-header">
+                  <span>Gameplay Ability System</span>
+                  <span>85%</span>
+                </div>
+                <div class="skill-bar">
+                  <div class="skill-progress" style="width: 85%;"></div>
+                </div>
+              </div>
+              <div class="skill-item">
+                <div class="skill-header">
+                  <span>Performance Optimization</span>
+                  <span>90%</span>
+                </div>
+                <div class="skill-bar">
+                  <div class="skill-progress" style="width: 90%;"></div>
+                </div>
+              </div>
+              <div class="skill-item">
+                <div class="skill-header">
+                  <span>Animation Programming</span>
+                  <span>85%</span>
+                </div>
+                <div class="skill-bar">
+                  <div class="skill-progress" style="width: 85%;"></div>
+                </div>
+              </div>
+              <div class="skill-item">
+                <div class="skill-header">
+                  <span>AI Programming</span>
+                  <span>80%</span>
+                </div>
+                <div class="skill-bar">
+                  <div class="skill-progress" style="width: 80%;"></div>
+                </div>
+              </div>
+              <div class="skill-item">
+                <div class="skill-header">
+                  <span>Gameplay Systems Design</span>
+                  <span>90%</span>
+                </div>
+                <div class="skill-bar">
+                  <div class="skill-progress" style="width: 90%;"></div>
+                </div>
+              </div>
+              <div class="skill-item">
+                <div class="skill-header">
+                  <span>Shader Programming</span>
+                  <span>75%</span>
+                </div>
+                <div class="skill-bar">
+                  <div class="skill-progress" style="width: 75%;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card">
+          <div class="card-header">
+            <h3>Art & Design Skills</h3>
+          </div>
+          <div class="card-content" style="max-height: 2000px;">
+            <div class="skill-category">
+              <div class="skill-item">
+                <div class="skill-header">
+                  <span>Blender (Basic)</span>
+                  <span>60%</span>
+                </div>
+                <div class="skill-bar">
+                  <div class="skill-progress" style="width: 60%;"></div>
+                </div>
+              </div>
+              <div class="skill-item">
+                <div class="skill-header">
+                  <span>Cascadeur (Basic)</span>
+                  <span>55%</span>
+                </div>
+                <div class="skill-bar">
+                  <div class="skill-progress" style="width: 55%;"></div>
+                </div>
+              </div>
+              <div class="skill-item">
+                <div class="skill-header">
+                  <span>Environment Art & Level Design</span>
+                  <span>70%</span>
+                </div>
+                <div class="skill-bar">
+                  <div class="skill-progress" style="width: 70%;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card">
+          <div class="card-header">
+            <h3>Tools & Software</h3>
+          </div>
+          <div class="card-content" style="max-height: 2000px;">
+            <div class="skill-category">
+              <div class="skill-item">
+                <div class="skill-header">
+                  <span>Visual Studio</span>
+                  <span>90%</span>
+                </div>
+                <div class="skill-bar">
+                  <div class="skill-progress" style="width: 90%;"></div>
+                </div>
+              </div>
+              <div class="skill-item">
+                <div class="skill-header">
+                  <span>Perforce</span>
+                  <span>85%</span>
+                </div>
+                <div class="skill-bar">
+                  <div class="skill-progress" style="width: 85%;"></div>
+                </div>
+              </div>
+              <div class="skill-item">
+                <div class="skill-header">
+                  <span>Unreal Engine Marketplace Development</span>
+                  <span>80%</span>
+                </div>
+                <div class="skill-bar">
+                  <div class="skill-progress" style="width: 80%;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="opensource" class="tab-content">
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-img">RuntimeVertexPaint</div>
+          <div class="project-content">
+            <h3 class="project-title">RuntimeVertexPaint</h3>
+            <p class="project-desc">System for modifying static mesh vertex colors at runtime in Unreal Engine. Used for dynamic vertex painting, altering surface appearance, showing damage, snow accumulation, mud, blood stains, and similar effects.</p>
+            <div class="tags">
+              <span class="tag">MIT License</span>
+              <span class="tag">Vertex Painting</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/Thyke/RuntimeVertexPaint" class="project-link" target="_blank">GitHub →</a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="project-card">
+          <div class="project-img">Dismemberment</div>
+          <div class="project-content">
+            <h3 class="project-title">Dismemberment</h3>
+            <p class="project-desc">Advanced dismemberment system featuring dynamic limb separation, weapon dropping, and customizable body part data.</p>
+            <div class="tags">
+              <span class="tag">MIT License</span>
+              <span class="tag">Physics</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/Thyke/Dismemberment" class="project-link" target="_blank">GitHub →</a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="project-card">
+          <div class="project-img">EnhancedTick</div>
+          <div class="project-content">
+            <h3 class="project-title">EnhancedTick</h3>
+            <p class="project-desc">Optimized tick management solution, allowing for cache-coherent batching of tick operations to significantly improve performance in scenes with many ticking components.</p>
+            <div class="tags">
+              <span class="tag">MIT License</span>
+              <span class="tag">Performance</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/Thyke/EnhancedTick" class="project-link" target="_blank">GitHub →</a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="project-card">
+          <div class="project-img">ObjectRecycler</div>
+          <div class="project-content">
+            <h3 class="project-title">ObjectRecycler</h3>
+            <p class="project-desc">High-performance, modular, and Blueprint-friendly object pooling system.</p>
+            <div class="tags">
+              <span class="tag">MIT License</span>
+              <span class="tag">Optimization</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/Thyke/ObjectRecycler" class="project-link" target="_blank">GitHub →</a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="project-card">
+          <div class="project-img">Mechanics-Academy</div>
+          <div class="project-content">
+            <h3 class="project-title">Mechanics-Academy</h3>
+            <p class="project-desc">Comprehensive collection of beginner-friendly Unreal Engine mechanics and examples.</p>
+            <div class="tags">
+              <span class="tag">MIT License</span>
+              <span class="tag">Educational</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/Thyke/Mechanics-Academy" class="project-link" target="_blank">GitHub →</a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="project-card">
+          <div class="project-img">LODManager</div>
+          <div class="project-content">
+            <h3 class="project-title">LODManager</h3>
+            <p class="project-desc">Plugin for automatic character LOD management, optimizing performance through dynamic mesh, visibility, and physics adjustments.</p>
+            <div class="tags">
+              <span class="tag">MIT License</span>
+              <span class="tag">Optimization</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/Thyke/LODManager" class="project-link" target="_blank">GitHub →</a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="project-card">
+          <div class="project-img">Ruins of Eternity</div>
+          <div class="project-content">
+            <h3 class="project-title">Ruins of Eternity</h3>
+            <p class="project-desc">Open Source action-adventure game (hobby project).</p>
+            <div class="tags">
+              <span class="tag">MIT License</span>
+              <span class="tag">Game</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/Thyke/RuinsOfEternity" class="project-link" target="_blank">GitHub →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <p>Faruk Yıldırım &copy; 2025 | Senior C++ / Unreal Engine Developer</p>
+  </footer>
+
+  <script>
+    // Tab Switching
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const tabId = btn.getAttribute('data-tab');
+        
+        tabBtns.forEach(btn => btn.classList.remove('active'));
+        tabContents.forEach(content => content.classList.remove('active'));
+        
+        btn.classList.add('active');
+        document.getElementById(tabId).classList.add('active');
+      });
+    });
+
+    // Card Toggle
+    function toggleCard(card) {
+      card.classList.toggle('expanded');
+    }
+
+    // Dark Mode Toggle
+    const darkModeToggle = document.getElementById('dark-mode-toggle');
+    
+    darkModeToggle.addEventListener('change', () => {
+      document.body.classList.toggle('dark-mode');
+    });
+
+    // Initialize expanded cards
+    document.addEventListener('DOMContentLoaded', () => {
+      const cards = document.querySelectorAll('.card');
+      cards.forEach(card => {
+        if (card.querySelector('.card-content').style.maxHeight) {
+          card.classList.add('expanded');
+        }
+      });
+    });
+  </script>
+</body>
 </html>
