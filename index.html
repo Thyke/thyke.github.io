@@ -16,6 +16,7 @@
       --text-color: #333;
       --text-light: #6c757d;
       --card-bg: #fff;
+      --heading-color: #2c3e50;
       --border-radius: 8px;
       --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
       --transition: all 0.3s ease;
@@ -45,6 +46,7 @@
       --text-color: #f8f9fa;
       --text-light: #adb5bd;
       --card-bg: #2c3e50;
+      --heading-color: #ffffff;
     }
 
     .toggle-container {
@@ -219,7 +221,7 @@
     .card-header h3 {
       font-family: 'Montserrat', sans-serif;
       font-weight: 600;
-      color: var(--primary-color);
+      color: var(--heading-color);
     }
 
     .card-header .toggle-icon {
@@ -318,7 +320,7 @@
       font-family: 'Montserrat', sans-serif;
       font-weight: 600;
       margin-bottom: 1rem;
-      color: var(--primary-color);
+      color: var(--heading-color);
     }
 
     .skill-item {
@@ -333,7 +335,7 @@
 
     .skill-bar {
       height: 8px;
-      background-color: #e9ecef;
+      background-color: rgba(255, 255, 255, 0.1);
       border-radius: 4px;
       overflow: hidden;
     }
@@ -367,13 +369,30 @@
 
     .project-img {
       height: 180px;
-      background-color: var(--secondary-color);
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+
+    .project-img::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(to bottom, transparent 60%, rgba(0, 0, 0, 0.7) 100%);
+    }
+
+    .project-img-title {
+      position: absolute;
+      bottom: 10px;
+      left: 15px;
       color: white;
-      font-size: 1.5rem;
+      z-index: 1;
       font-weight: 600;
+      font-size: 1.2rem;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
     }
 
     .project-content {
@@ -384,7 +403,7 @@
       font-family: 'Montserrat', sans-serif;
       font-weight: 600;
       margin-bottom: 0.5rem;
-      color: var(--primary-color);
+      color: var(--heading-color);
     }
 
     .project-desc {
@@ -453,10 +472,10 @@
     }
   </style>
 </head>
-<body>
+<body class="dark-mode">
   <div class="toggle-container">
     <label class="toggle-switch">
-      <input type="checkbox" id="dark-mode-toggle">
+      <input type="checkbox" id="dark-mode-toggle" checked>
       <span class="toggle-slider"></span>
     </label>
   </div>
@@ -474,7 +493,7 @@
       <button class="tab-btn" data-tab="experience">Experience</button>
       <button class="tab-btn" data-tab="projects">Projects</button>
       <button class="tab-btn" data-tab="skills">Skills</button>
-      <button class="tab-btn" data-tab="opensource">Open-Source</button>
+      <button class="tab-btn" data-tab="opensource">Open Source</button>
     </div>
 
     <div id="about" class="tab-content active">
@@ -615,7 +634,9 @@
     <div id="projects" class="tab-content">
       <div class="projects-grid">
         <div class="project-card">
-          <div class="project-img">Bellringer Project</div>
+          <div class="project-img" style="background-image: url('/api/placeholder/600/360');">
+            <div class="project-img-title">Bellringer Project</div>
+          </div>
           <div class="project-content">
             <h3 class="project-title">Bellringer Project</h3>
             <p class="project-desc">Singleplayer horror game based on an AudioObservation system. Players must navigate through the game without making sound, with a story-driven experience.</p>
@@ -628,7 +649,9 @@
         </div>
         
         <div class="project-card">
-          <div class="project-img">Zygora Survival Protocol</div>
+          <div class="project-img" style="background-image: url('/api/placeholder/600/360');">
+            <div class="project-img-title">Zygora Survival Protocol</div>
+          </div>
           <div class="project-content">
             <h3 class="project-title">Zygora Survival Protocol</h3>
             <p class="project-desc">A survival game featuring unique mutation mechanics where infected humans exhibit different levels of intelligence and abilities, from basic zombie-like creatures to highly intelligent mutated beings.</p>
@@ -641,7 +664,9 @@
         </div>
         
         <div class="project-card">
-          <div class="project-img">Alex Awakening</div>
+          <div class="project-img" style="background-image: url('/api/placeholder/600/360');">
+            <div class="project-img-title">Alex Awakening</div>
+          </div>
           <div class="project-content">
             <h3 class="project-title">Alex Awakening</h3>
             <p class="project-desc">An AA-level action-adventure game with advanced gameplay mechanics and immersive storytelling. Infrastructure has been established, but development is currently on hold.</p>
@@ -654,7 +679,9 @@
         </div>
         
         <div class="project-card">
-          <div class="project-img">Good Kill!</div>
+          <div class="project-img" style="background-image: url('/api/placeholder/600/360');">
+            <div class="project-img-title">Good Kill!</div>
+          </div>
           <div class="project-content">
             <h3 class="project-title">Good Kill!</h3>
             <p class="project-desc">Commercial project featuring gameplay programming, profiling and optimization, animation programming, and AI systems.</p>
@@ -702,73 +729,41 @@
               <div class="skill-item">
                 <div class="skill-header">
                   <span>C++</span>
-                  <span>95%</span>
-                </div>
-                <div class="skill-bar">
-                  <div class="skill-progress" style="width: 95%;"></div>
                 </div>
               </div>
               <div class="skill-item">
                 <div class="skill-header">
                   <span>Unreal Engine</span>
-                  <span>90%</span>
-                </div>
-                <div class="skill-bar">
-                  <div class="skill-progress" style="width: 90%;"></div>
                 </div>
               </div>
               <div class="skill-item">
                 <div class="skill-header">
                   <span>Gameplay Ability System</span>
-                  <span>85%</span>
-                </div>
-                <div class="skill-bar">
-                  <div class="skill-progress" style="width: 85%;"></div>
                 </div>
               </div>
               <div class="skill-item">
                 <div class="skill-header">
                   <span>Performance Optimization</span>
-                  <span>90%</span>
-                </div>
-                <div class="skill-bar">
-                  <div class="skill-progress" style="width: 90%;"></div>
                 </div>
               </div>
               <div class="skill-item">
                 <div class="skill-header">
                   <span>Animation Programming</span>
-                  <span>85%</span>
-                </div>
-                <div class="skill-bar">
-                  <div class="skill-progress" style="width: 85%;"></div>
                 </div>
               </div>
               <div class="skill-item">
                 <div class="skill-header">
                   <span>AI Programming</span>
-                  <span>80%</span>
-                </div>
-                <div class="skill-bar">
-                  <div class="skill-progress" style="width: 80%;"></div>
                 </div>
               </div>
               <div class="skill-item">
                 <div class="skill-header">
                   <span>Gameplay Systems Design</span>
-                  <span>90%</span>
-                </div>
-                <div class="skill-bar">
-                  <div class="skill-progress" style="width: 90%;"></div>
                 </div>
               </div>
               <div class="skill-item">
                 <div class="skill-header">
                   <span>Shader Programming</span>
-                  <span>75%</span>
-                </div>
-                <div class="skill-bar">
-                  <div class="skill-progress" style="width: 75%;"></div>
                 </div>
               </div>
             </div>
@@ -784,28 +779,16 @@
               <div class="skill-item">
                 <div class="skill-header">
                   <span>Blender (Basic)</span>
-                  <span>60%</span>
-                </div>
-                <div class="skill-bar">
-                  <div class="skill-progress" style="width: 60%;"></div>
                 </div>
               </div>
               <div class="skill-item">
                 <div class="skill-header">
                   <span>Cascadeur (Basic)</span>
-                  <span>55%</span>
-                </div>
-                <div class="skill-bar">
-                  <div class="skill-progress" style="width: 55%;"></div>
                 </div>
               </div>
               <div class="skill-item">
                 <div class="skill-header">
                   <span>Environment Art & Level Design</span>
-                  <span>70%</span>
-                </div>
-                <div class="skill-bar">
-                  <div class="skill-progress" style="width: 70%;"></div>
                 </div>
               </div>
             </div>
@@ -821,28 +804,16 @@
               <div class="skill-item">
                 <div class="skill-header">
                   <span>Visual Studio</span>
-                  <span>90%</span>
-                </div>
-                <div class="skill-bar">
-                  <div class="skill-progress" style="width: 90%;"></div>
                 </div>
               </div>
               <div class="skill-item">
                 <div class="skill-header">
-                  <span>Perforce</span>
-                  <span>85%</span>
-                </div>
-                <div class="skill-bar">
-                  <div class="skill-progress" style="width: 85%;"></div>
+                  <span>Perforce & Git & Diversion</span>
                 </div>
               </div>
               <div class="skill-item">
                 <div class="skill-header">
                   <span>Unreal Engine Marketplace Development</span>
-                  <span>80%</span>
-                </div>
-                <div class="skill-bar">
-                  <div class="skill-progress" style="width: 80%;"></div>
                 </div>
               </div>
             </div>
@@ -854,7 +825,9 @@
     <div id="opensource" class="tab-content">
       <div class="projects-grid">
         <div class="project-card">
-          <div class="project-img">RuntimeVertexPaint</div>
+          <div class="project-img" style="background-image: url('/api/placeholder/600/360');">
+            <div class="project-img-title">RuntimeVertexPaint</div>
+          </div>
           <div class="project-content">
             <h3 class="project-title">RuntimeVertexPaint</h3>
             <p class="project-desc">System for modifying static mesh vertex colors at runtime in Unreal Engine. Used for dynamic vertex painting, altering surface appearance, showing damage, snow accumulation, mud, blood stains, and similar effects.</p>
@@ -869,7 +842,9 @@
         </div>
         
         <div class="project-card">
-          <div class="project-img">Dismemberment</div>
+          <div class="project-img" style="background-image: url('/api/placeholder/600/360');">
+            <div class="project-img-title">Dismemberment</div>
+          </div>
           <div class="project-content">
             <h3 class="project-title">Dismemberment</h3>
             <p class="project-desc">Advanced dismemberment system featuring dynamic limb separation, weapon dropping, and customizable body part data.</p>
@@ -884,7 +859,9 @@
         </div>
         
         <div class="project-card">
-          <div class="project-img">EnhancedTick</div>
+          <div class="project-img" style="background-image: url('/api/placeholder/600/360');">
+            <div class="project-img-title">EnhancedTick</div>
+          </div>
           <div class="project-content">
             <h3 class="project-title">EnhancedTick</h3>
             <p class="project-desc">Optimized tick management solution, allowing for cache-coherent batching of tick operations to significantly improve performance in scenes with many ticking components.</p>
@@ -899,7 +876,9 @@
         </div>
         
         <div class="project-card">
-          <div class="project-img">ObjectRecycler</div>
+          <div class="project-img" style="background-image: url('/api/placeholder/600/360');">
+            <div class="project-img-title">ObjectRecycler</div>
+          </div>
           <div class="project-content">
             <h3 class="project-title">ObjectRecycler</h3>
             <p class="project-desc">High-performance, modular, and Blueprint-friendly object pooling system.</p>
@@ -914,7 +893,9 @@
         </div>
         
         <div class="project-card">
-          <div class="project-img">Mechanics-Academy</div>
+          <div class="project-img" style="background-image: url('/api/placeholder/600/360');">
+            <div class="project-img-title">Mechanics-Academy</div>
+          </div>
           <div class="project-content">
             <h3 class="project-title">Mechanics-Academy</h3>
             <p class="project-desc">Comprehensive collection of beginner-friendly Unreal Engine mechanics and examples.</p>
@@ -929,7 +910,9 @@
         </div>
         
         <div class="project-card">
-          <div class="project-img">LODManager</div>
+          <div class="project-img" style="background-image: url('/api/placeholder/600/360');">
+            <div class="project-img-title">LODManager</div>
+          </div>
           <div class="project-content">
             <h3 class="project-title">LODManager</h3>
             <p class="project-desc">Plugin for automatic character LOD management, optimizing performance through dynamic mesh, visibility, and physics adjustments.</p>
@@ -944,7 +927,9 @@
         </div>
         
         <div class="project-card">
-          <div class="project-img">Ruins of Eternity</div>
+          <div class="project-img" style="background-image: url('/api/placeholder/600/360');">
+            <div class="project-img-title">Ruins of Eternity</div>
+          </div>
           <div class="project-content">
             <h3 class="project-title">Ruins of Eternity</h3>
             <p class="project-desc">Open Source action-adventure game (hobby project).</p>
