@@ -1,6 +1,6 @@
 baseURL = 'https://thyke.github.io/'
 theme = 'PaperMod'
-defaultContentLanguage = "tr" # Varsayılan dil
+defaultContentLanguage = "en" # Varsayılan dil
 languageCode = 'en-us'
 title = 'Faruk Yıldırım | C++ Developer'
 
