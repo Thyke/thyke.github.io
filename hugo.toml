@@ -1,0 +1,29 @@
+baseURL = 'https://thyke.github.io/'
+languageCode = 'en-us'
+title = 'Faruk Yıldırım'
+theme = 'PaperMod'
+
+[params]
+    defaultTheme = "dark" # Varsayılan olarak karanlık mod
+    description = "Senior C++ / Unreal Engine Developer"
+    
+    [params.profileMode]
+        enabled = true
+        title = "Faruk Yıldırım"
+        subtitle = "Senior C++ / Unreal Engine Developer"
+        imageUrl = "https://github.com/thyke.png" # GitHub profil foton
+        imageTitle = "Faruk Yıldırım"
+        
+        [[params.profileMode.buttons]]
+            name = "Projects"
+            url = "/projects"
+        [[params.profileMode.buttons]]
+            name = "GitHub"
+            url = "https://github.com/Thyke"
+
+    [[params.socialIcons]]
+        name = "github"
+        url = "https://github.com/Thyke"
+    [[params.socialIcons]]
+        name = "linkedin"
+        url = "https://linkedin.com/in/senin-linkedin-adresin" # Burayı güncelle
