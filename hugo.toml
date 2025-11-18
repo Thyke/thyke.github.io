@@ -27,3 +27,28 @@ theme = 'PaperMod'
     [[params.socialIcons]]
         name = "linkedin"
         url = "https://www.linkedin.com/in/faruk-y%C4%B1ld%C4%B1r%C4%B1m-aa1433103/" # Burayı güncelle
+
+
+
+# Yeni Blog Sayfası için klasör oluştur (content/blog)
+# ---
+
+[menu]
+  [[menu.main]]
+    identifier = "projects"       # Menü öğesinin benzersiz kimliği
+    name = "Projects"             # Görünen isim
+    url = "/projects/"            # Yönlendirilecek URL (Hugo'da / ile bitmesi tercih edilir)
+    weight = 10                   # Menü sırası (düşük sayı önde çıkar)
+
+  [[menu.main]]
+    identifier = "blog"
+    name = "Blog & Technical Notes"
+    url = "/blog/"
+    weight = 20
+
+  [[menu.main]]
+    identifier = "github"
+    name = "GitHub"
+    url = "https://github.com/Thyke"
+    weight = 30
+    target = "_blank"             # Harici linkler için yeni sekmede açılmasını sağlar
