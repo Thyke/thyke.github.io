@@ -3,6 +3,7 @@ title: "Good Kill!"
 date: 2024-01-01
 tags: ["C++", "Unreal Engine", "AI", "Released"]
 summary: "Commercial project featuring gameplay programming, profiling and optimization."
+translationKey: "goodkill_project"
 ---
 
 ### Project Details
