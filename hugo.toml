@@ -1,86 +1,89 @@
-# ESKİ: baseURL = 'https://thyke.github.io/'
-# ESKİ: languageCode = 'en-us'
-# ESKİ: title = 'Faruk Yıldırım'
-# ESKİ: theme = 'PaperMod'
+baseURL = 'https://thyke.github.io/'
+theme = 'PaperMod'
+defaultContentLanguage = "tr" # Varsayılan dil
+languageCode = 'en-us'
+title = 'Faruk Yıldırım | C++ Developer'
 
-# YENİ ÇOK DİLLİ KONFİGÜRASYON BAŞLANGICI
-defaultContentLanguage = "tr"  # Varsayılan dilimiz Türkçe olsun
-
-[languages]
-  [languages.tr]
-    languageName = "Türkçe"
-    contentDir = "content/tr"  # TR içerikleri bu klasöre bakacak
-    weight = 1                 # Sıralamada TR önde
-    title = "Faruk Yıldırım - C++ Geliştirici"
-    languageCode = "tr"        # Menü çevirileri için PaperMod bunu kullanır
-    
-    [languages.tr.menu]
-        [[languages.tr.menu.main]]
-            identifier = "projeler"
-            name = "Projeler"
-            url = "/projects/"
-            weight = 10
-            
-  [languages.en]
-    languageName = "English"
-    contentDir = "content/en"  # EN içerikleri bu klasöre bakacak
-    weight = 2
-    title = "Faruk Yıldırım - C++ Developer"
-    languageCode = "en"
-    
-    [languages.en.menu]
-        [[languages.en.menu.main]]
-            identifier = "projects"
-            name = "Projects"
-            url = "/projects/"
-            weight = 10
-            
 [params]
-    defaultTheme = "dark" # Varsayılan olarak karanlık mod
+    defaultTheme = "dark"
     description = "Senior C++ / Unreal Engine Developer"
-    
+
+    # --- ORTA KISIM (Profile Mode) AYARLARI ---
     [params.profileMode]
-        enabled = true
+        enabled = true # Profile Mode aktif kalacak
         title = "Faruk Yıldırım"
         subtitle = "Senior C++ / Unreal Engine Developer"
-        imageUrl = "https://github.com/thyke.png" # GitHub profil foton
+        imageUrl = "https://github.com/thyke.png"
         imageTitle = "Faruk Yıldırım"
         
+        # ORTADA GÖRÜNECEK BUTONLAR (Ana Sayfaya özel)
         [[params.profileMode.buttons]]
             name = "Projects"
             url = "/projects"
         [[params.profileMode.buttons]]
-            name = "GitHub"
-            url = "https://github.com/Thyke"
+            name = "Blog"
+            url = "/blog"
 
     [[params.socialIcons]]
         name = "github"
         url = "https://github.com/Thyke"
     [[params.socialIcons]]
         name = "linkedin"
-        url = "https://www.linkedin.com/in/faruk-y%C4%B1ld%C4%B1r%C4%B1m-aa1433103/" # Burayı güncelle
+        url = "https://www.linkedin.com/in/faruk-y%C4%B1ld%C4%B1r%C4%B1m-aa1433103/"
 
+# --- ÇOK DİLLİ KONFİGÜRASYON (Sağ Üst Menü ve Dil Ayarı) ---
 
-
-# Yeni Blog Sayfası için klasör oluştur (content/blog)
-# ---
-
-[menu]
-  [[menu.main]]
-    identifier = "projects"       # Menü öğesinin benzersiz kimliği
-    name = "Projects"             # Görünen isim
-    url = "/projects/"            # Yönlendirilecek URL (Hugo'da / ile bitmesi tercih edilir)
-    weight = 10                   # Menü sırası (düşük sayı önde çıkar)
-
-  [[menu.main]]
-    identifier = "blog"
-    name = "Blog & Technical Notes"
-    url = "/blog/"
-    weight = 20
-
-  [[menu.main]]
-    identifier = "github"
-    name = "GitHub"
-    url = "https://github.com/Thyke"
-    weight = 30
-    target = "_blank"             # Harici linkler için yeni sekmede açılmasını sağlar
+[languages]
+  [languages.tr]
+    languageName = "Türkçe"
+    contentDir = "content/tr"
+    weight = 1
+    title = "Faruk Yıldırım - C++ Geliştirici"
+    languageCode = "tr"
+    
+    [languages.tr.menu]
+        # SAĞ ÜST MENÜ (TÜRKÇE)
+        [[languages.tr.menu.main]]
+            identifier = "projeler"
+            name = "Projeler"
+            url = "/projects/"
+            weight = 10
+            
+        [[languages.tr.menu.main]]
+            identifier = "blog"
+            name = "Blog & Teknik Notlar"
+            url = "/blog/"
+            weight = 20
+            
+        [[languages.tr.menu.main]]
+            identifier = "hakkimda"
+            name = "Hakkımda"
+            url = "/about/" # Yeni statik sayfa eklenmiş oldu
+            weight = 30
+            
+  [languages.en]
+    languageName = "English"
+    contentDir = "content/en"
+    weight = 2
+    title = "Faruk Yıldırım - C++ Developer"
+    languageCode = "en"
+    
+    [languages.en.menu]
+        # SAĞ ÜST MENÜ (İNGİLİZCE)
+        [[languages.en.menu.main]]
+            identifier = "projects"
+            name = "Projects"
+            url = "/projects/"
+            weight = 10
+            
+        [[languages.en.menu.main]]
+            identifier = "blog"
+            name = "Blog & Technical Notes"
+            url = "/blog/"
+            weight = 20
+            
+        [[languages.en.menu.main]]
+            identifier = "about"
+            name = "About Me"
+            url = "/about/"
+            weight = 30
