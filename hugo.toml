@@ -1,8 +1,40 @@
-baseURL = 'https://thyke.github.io/'
-languageCode = 'en-us'
-title = 'Faruk Yıldırım'
-theme = 'PaperMod'
+# ESKİ: baseURL = 'https://thyke.github.io/'
+# ESKİ: languageCode = 'en-us'
+# ESKİ: title = 'Faruk Yıldırım'
+# ESKİ: theme = 'PaperMod'
 
+# YENİ ÇOK DİLLİ KONFİGÜRASYON BAŞLANGICI
+defaultContentLanguage = "tr"  # Varsayılan dilimiz Türkçe olsun
+
+[languages]
+  [languages.tr]
+    languageName = "Türkçe"
+    contentDir = "content/tr"  # TR içerikleri bu klasöre bakacak
+    weight = 1                 # Sıralamada TR önde
+    title = "Faruk Yıldırım - C++ Geliştirici"
+    languageCode = "tr"        # Menü çevirileri için PaperMod bunu kullanır
+    
+    [languages.tr.menu]
+        [[languages.tr.menu.main]]
+            identifier = "projeler"
+            name = "Projeler"
+            url = "/projects/"
+            weight = 10
+            
+  [languages.en]
+    languageName = "English"
+    contentDir = "content/en"  # EN içerikleri bu klasöre bakacak
+    weight = 2
+    title = "Faruk Yıldırım - C++ Developer"
+    languageCode = "en"
+    
+    [languages.en.menu]
+        [[languages.en.menu.main]]
+            identifier = "projects"
+            name = "Projects"
+            url = "/projects/"
+            weight = 10
+            
 [params]
     defaultTheme = "dark" # Varsayılan olarak karanlık mod
     description = "Senior C++ / Unreal Engine Developer"
