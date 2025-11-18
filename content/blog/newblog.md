@@ -1,6 +1,6 @@
 ---
 title: "Object Pooling"
-date: 18/11/2025
+date: 2025-11-18
 tags: ["C++", "Unreal Engine", "Optimization", "Released"]
 summary: "Unreal Engine'de Object Pooling: Production-Ready Implementasyon ve Optimizasyon Teknikleri."
 ---
